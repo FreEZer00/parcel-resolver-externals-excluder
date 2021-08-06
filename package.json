@@ -1,8 +1,12 @@
 {
   "name": "parcel-resolver-externals-excluder",
-  "version": "1.0.0",
+  "version": "0.1.0",
   "main": "dist/min/index.min.js",
   "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/FreEZer00/parcel-resolver-externals-excluder"
+  },
   "scripts": {
     "clean": "rimraf dist test/testapp/node_modules test/testapp/.parcel-cache",
     "build": "tsc && npm run minify",
