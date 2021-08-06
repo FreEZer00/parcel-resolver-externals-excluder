@@ -14,14 +14,18 @@ An attempt to actually work with parcelv2
 
   ```json
   {
-  "extends": "@parcel/config-default",
-  "resolvers": ["...", "parcel-resolver-externals-excluder"]
+    "extends": "@parcel/config-default",
+    "resolvers": ["...", "parcel-resolver-externals-excluder"]
   }
   ```
 
 - In your [package.json](https://docs.npmjs.com/cli/v7/configuring-npm/package-json) configure the external files to be excluded
   ```json
   {
-  "externalsExcluder": ["your", "paths"]
+    "externalsExcluder": [
+      "your/absolute/paths", 
+      "*.fileType",
+      "yourFolders/**/*"
+    ]
   }
   ```
