@@ -23,6 +23,7 @@ function shouldSkip(filePath: FilePath) {
             return true;
         }
     }
+
     return false;
 }
 
@@ -31,6 +32,7 @@ export default new Resolver({
         if (shouldSkip(filePath)) {
             return null;
         }
+
         return {
             filePath,
         };
