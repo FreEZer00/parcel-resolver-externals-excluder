@@ -1,6 +1,6 @@
-import { Resolver } from '@parcel/plugin';
-import { Dependency, FilePath, PluginLogger, PluginOptions, ResolveResult } from '@parcel/types';
-import { match } from 'minimatch';
+import {Resolver} from '@parcel/plugin';
+import {Dependency, FilePath, PluginLogger, PluginOptions, ResolveResult} from '@parcel/types';
+import {match} from 'minimatch';
 
 type ResolverParams = {
     dependency: Dependency;
@@ -28,9 +28,16 @@ function shouldSkip(filePath: FilePath) {
 }
 
 export default new Resolver({
-    async resolve({ filePath }: ResolverParams): Promise<ResolveResult> {
+    async resolve({filePath, logger}: ResolverParams): Promise<ResolveResult> {
         if (shouldSkip(filePath)) {
+            logger.verbose({
+                message: `✅ Skipping for ${filePath}`,
+            })
             return null;
+        } else {
+            logger.verbose({
+                message: `❌ Not skipping for ${filePath}`,
+            })
         }
 
         return {
