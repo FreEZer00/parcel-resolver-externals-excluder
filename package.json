@@ -8,7 +8,7 @@
     "url": "https://github.com/FreEZer00/parcel-resolver-externals-excluder"
   },
   "scripts": {
-    "clean": "rimraf dist test/testapp/node_modules test/testapp/.parcel-cache",
+    "clean": "rimraf dist",
     "build": "tsc && npm run minify",
     "minify": "mkdir -p dist/min && terser --compress --mangle --comments false -o dist/min/index.min.js -- dist/index.js"
   },
