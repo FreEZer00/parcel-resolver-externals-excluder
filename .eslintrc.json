@@ -1,0 +1,23 @@
+{
+    "parser": "@typescript-eslint/parser",
+    "extends": ["plugin:@typescript-eslint/recommended", "plugin:prettier/recommended"],
+    "parserOptions": {
+        "ecmaVersion": 2018,
+        "sourceType": "module",
+        "ecmaFeatures": {
+            "jsx": true
+        }
+    },
+    "rules": {
+        "func-style": ["error", "declaration", { "allowArrowFunctions": true }],
+        "prefer-arrow-callback": "error",
+        "arrow-body-style": "error",
+        "no-fallthrough": "error",
+        "eqeqeq": "error",
+        "object-shorthand": ["error", "always"],
+        "no-useless-rename": "error",
+        "@typescript-eslint/no-unused-vars": "error",
+        "@typescript-eslint/no-explicit-any": "error",
+        "prettier/prettier": ["error"]
+    }
+}

@@ -13,6 +13,8 @@
     "emitDecoratorMetadata": false,
     "experimentalDecorators": false,
     "allowSyntheticDefaultImports": true,
+    "resolveJsonModule": true,
+    "esModuleInterop": true,
     "module": "commonjs",
     "target": "esnext",
     "importHelpers": false,
