@@ -1,6 +1,6 @@
 {
   "name": "parcel-resolver-externals-excluder",
-  "version": "0.1.7",
+  "version": "0.1.8",
   "main": "dist/min/index.min.js",
   "license": "MIT",
   "repository": {
