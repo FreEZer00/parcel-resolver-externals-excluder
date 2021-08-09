@@ -1,4 +1,5 @@
 # parcel-resolver-externals-excluder
+[![npm version](https://img.shields.io/npm/v/parcel-resolver-externals-excluder.svg?style=flat)](https://www.npmjs.com/package/parcel-resolver-externals-excluder)
 
 This Plugin for parcel v2 allows you to ignore files in resolving phase using a configuration in you package.json. 
 
