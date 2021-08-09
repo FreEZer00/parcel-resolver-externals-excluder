@@ -12,8 +12,9 @@ type ResolverParams = {
     pipeline: string | null | undefined;
 };
 
-function shouldSkip(filePath: FilePath, projectRoot: FilePath) {
-    const configs = readJsonSync(join(projectRoot, 'package.json')).externalsExcluder;
+function shouldExclude(filePath: FilePath, projectRoot: FilePath) {
+    const configs = readJsonSync(join(projectRoot, 'package.json'))?.externalsExcluder;
+    console.log(configs);
 
     if (!configs) {
         return;
@@ -30,19 +31,20 @@ function shouldSkip(filePath: FilePath, projectRoot: FilePath) {
 
 export default new Resolver({
     async resolve({ filePath, logger, options }: ResolverParams): Promise<ResolveResult> {
-        if (shouldSkip(filePath, options.projectRoot)) {
+        if (shouldExclude(filePath, options.projectRoot)) {
             logger.verbose({
                 message: `✅ Skipping for ${filePath}`,
             });
-            return null;
+            return {
+                filePath,
+                isExcluded: true,
+            };
         } else {
             logger.verbose({
                 message: `❌ Not skipping for ${filePath}`,
             });
         }
 
-        return {
-            filePath,
-        };
+        return null;
     },
 });
