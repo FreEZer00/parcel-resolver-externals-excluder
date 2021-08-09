@@ -12,16 +12,20 @@ type ResolverParams = {
     pipeline: string | null | undefined;
 };
 
-function shouldExclude(filePath: FilePath, projectRoot: FilePath) {
+function shouldExclude(filePath: FilePath, projectRoot: FilePath, logger: PluginLogger): boolean {
     const configs = readJsonSync(join(projectRoot, 'package.json'))?.externalsExcluder;
-    console.log(configs);
+    logger.verbose({
+        message: `Config: ${configs}`,
+    });
 
     if (!configs) {
-        return;
+        return false;
     }
 
-    for (const config in configs) {
-        if (match([filePath], config)) {
+    for (const config of configs) {
+        const matching = match([filePath], config);
+
+        if (matching.length > 0) {
             return true;
         }
     }
@@ -31,20 +35,21 @@ function shouldExclude(filePath: FilePath, projectRoot: FilePath) {
 
 export default new Resolver({
     async resolve({ filePath, logger, options }: ResolverParams): Promise<ResolveResult> {
-        if (shouldExclude(filePath, options.projectRoot)) {
+        if (shouldExclude(filePath, options.projectRoot, logger)) {
             logger.verbose({
-                message: `✅ Skipping for ${filePath}`,
+                message: `✅ Excluding for ${filePath}`,
             });
             return {
                 filePath,
                 isExcluded: true,
             };
-        } else {
-            logger.verbose({
-                message: `❌ Not skipping for ${filePath}`,
-            });
         }
+        logger.verbose({
+            message: `❌ Not excluding for ${filePath}`,
+        });
 
         return null;
     },
 });
+
+export { shouldExclude };

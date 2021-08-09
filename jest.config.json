@@ -1,0 +1,10 @@
+{
+    "roots": ["<rootDir>/src"],
+    "testURL": "http://test.com",
+    "maxWorkers": 4,
+    "clearMocks": true,
+    "coverageDirectory": "coverage",
+    "moduleFileExtensions": ["js", "ts"],
+    "preset": "ts-jest",
+    "testRegex": "(/__tests__/.*|(\\.|/)(test))\\.[jt]s?$"
+}
