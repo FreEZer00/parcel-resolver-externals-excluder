@@ -12,11 +12,8 @@ type ResolverParams = {
     pipeline: string | null | undefined;
 };
 
-function shouldExclude(filePath: FilePath, projectRoot: FilePath, logger: PluginLogger): boolean {
+function shouldExclude(filePath: FilePath, projectRoot: FilePath): boolean {
     const configs = readJsonSync(join(projectRoot, 'package.json'))?.externalsExcluder;
-    logger.verbose({
-        message: `Config: ${configs}`,
-    });
 
     if (!configs) {
         return false;
@@ -35,7 +32,7 @@ function shouldExclude(filePath: FilePath, projectRoot: FilePath, logger: Plugin
 
 export default new Resolver({
     async resolve({ filePath, logger, options }: ResolverParams): Promise<ResolveResult> {
-        if (shouldExclude(filePath, options.projectRoot, logger)) {
+        if (shouldExclude(filePath, options.projectRoot)) {
             logger.verbose({
                 message: `✅ Excluding for ${filePath}`,
             });
@@ -44,9 +41,6 @@ export default new Resolver({
                 isExcluded: true,
             };
         }
-        logger.verbose({
-            message: `❌ Not excluding for ${filePath}`,
-        });
 
         return null;
     },
