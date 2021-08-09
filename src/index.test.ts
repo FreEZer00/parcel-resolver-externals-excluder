@@ -1,26 +1,14 @@
 import { shouldExclude } from './index';
-import { PluginLogger } from '@parcel/types';
 
 import { readJsonSync } from 'fs-extra';
 jest.mock('fs-extra');
 const readJsonSyncMock = readJsonSync as jest.MockedFunction<typeof readJsonSync>;
 
-const loggerMock: PluginLogger = {
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    verbose(diagnostic: any) {
-        console.log(diagnostic);
-    },
-    log: jest.fn(),
-    error: jest.fn(),
-    info: jest.fn(),
-    warn: jest.fn(),
-};
-
 describe('ResolverTest', () => {
     it('should not exclude filePaths if config is empty', () => {
         readJsonSyncMock.mockReturnValueOnce(null);
 
-        const result = shouldExclude('my/Path', 'root', loggerMock);
+        const result = shouldExclude('my/Path', 'root');
         expect(result).toBeFalsy();
     });
 
@@ -29,9 +17,9 @@ describe('ResolverTest', () => {
             externalsExcluder: ['/my/*', '/some/*'],
         });
 
-        const result = shouldExclude('/my/Path.exe', 'root', loggerMock);
+        const result = shouldExclude('/my/Path.exe', 'root');
         expect(result).toBeTruthy();
-        const result2 = shouldExclude('your/Path', 'root', loggerMock);
+        const result2 = shouldExclude('your/Path', 'root');
         expect(result2).toBeFalsy();
     });
 });

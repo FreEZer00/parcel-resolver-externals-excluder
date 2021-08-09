@@ -1,6 +1,6 @@
 # parcel-resolver-externals-excluder
 
-An attempt to actually work with parcelv2
+This Plugin for parcel v2 allows you to ignore files in resolving phase using a configuration in you package.json. 
 
 ## Installation
 
@@ -11,11 +11,12 @@ An attempt to actually work with parcelv2
 ## Usage 
 
 - In your [.parcelrc](https://v2.parceljs.org/configuration/plugin-configuration/) configure the resolver
+- NOTE: the default resolver should be in the list after this plugin, to use the default behavior for not excluded files. 
 
   ```json
   {
     "extends": "@parcel/config-default",
-    "resolvers": ["...", "parcel-resolver-externals-excluder"]
+    "resolvers": ["parcel-resolver-externals-excluder", "..."]
   }
   ```
 
