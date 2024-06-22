@@ -1,3 +1,5 @@
+# DEPRECATED AND NOT MAINTAINED
+
 # parcel-resolver-externals-excluder
 [![npm version](https://img.shields.io/npm/v/parcel-resolver-externals-excluder.svg?style=flat)](https://www.npmjs.com/package/parcel-resolver-externals-excluder)
 
